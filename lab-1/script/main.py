@@ -20,6 +20,9 @@ def main():
     # get sample data
     sample_period, data = raspi_import(file_path)
 
+    spectrum = calc_spectrum(data)
+    spectrum_plot(spectrum, sample_period)
+
 
 if __name__ == "__main__":
     main()
