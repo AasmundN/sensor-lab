@@ -1,6 +1,8 @@
-import matplotlib.pyplot as plt
 import sys
+
 from raspi_import import raspi_import
+from plot import time_plot, spectrum_plot
+from fft import calc_spectrum
 
 missing_file_path_error = (
     "\nMissing file path\n\nUsage example: python main.py foo.bin\n"
