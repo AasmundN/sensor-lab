@@ -1,5 +1,4 @@
-from scipy.signal import fft, fftshift
-from scipy.signal import windows
+from scipy.fft import fft, fftshift
 
 
 #
