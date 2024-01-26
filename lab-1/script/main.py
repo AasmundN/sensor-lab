@@ -15,10 +15,14 @@ def main():
         print(missing_file_path_error)
         exit(-1)
 
-    file_path = sys.argv[1] or exit("Missing file path")
+    file_path = sys.argv[1]
 
-    # get sample data
     sample_period, data = raspi_import(file_path)
+
+    #
+    # example: plot slice of first data column
+    #
+    time_plot(data[2000:3000, 0], sample_period, show_plot=True)
 
 
 if __name__ == "__main__":
