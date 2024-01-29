@@ -10,12 +10,13 @@
 
 ### 2.2 Laboppgaver
 
-- Filteret er et Pi-filter av typen tredjeordens lavpassfilter, og fungerer ved å kombinere kondensatorer og spolers effekt på spenningsignaler som varierer i styrke over tid. Den første kondensatoren $C1$ fungerer som en avkoplingskondensator (decoupling) og kopler AC-signaler til jord. $C1$ skal også ha såpass stor kapasitans at den kan jevne ut en rask endring ift. AC-signaler (ripple). Dermed glatter kondensatoren $C1$ ut signalet. Induktansen $L1$ bidrar til at eventuelle resterende AC-komponenter møter en høy impedans. Sammen med kondensatorene $C2$ og $C3$, som kortslutter AC-komponentene til jord (bypass), får vi et lavpassfilter. Knekkfrekvensen til $LC$-filterert kan beregnes med formelen: 
+-  Filteret er et Pi-filter av typen tredjeordens lavpassfilter, og fungerer ved å kombinere kondensatorer og spolers effekt på spenningsignaler som varierer i styrke over tid. Den første kondensatoren $C1$ fungerer som en avkoplingskondensator (decoupling) og kopler AC-signaler til jord. $C1$ skal også ha såpass stor kapasitans at den kan jevne ut en rask endring ift. AC-signaler (ripple). Dermed glatter kondensatoren $C1$ ut signalet. Induktansen $L1$ bidrar til at eventuelle resterende AC-komponenter møter en høy impedans. Sammen med kondensatorene $C2$ og $C3$, som kortslutter AC-komponentene til jord (bypass), får vi et lavpassfilter. Knekkfrekvensen til $LC$-filterert kan beregnes med formelen:
 
 $$\frac{1}{2\pi\sqrt{LC}} = 23 \text{ Hz.}$$
 
-- $L$ er induktansen til spolen $L1$ i kretsen ($L = L1 = 100 \text{ mH}$), og $C$ er total kapasitans fra kondensatorene $C2$ og $C3$ gitt av formelen $C = C2 + C3 = 470,1 \text{ }\mu\text{F}$. Kondensator C4 vil på grunn av sin relativt lave verdi kunne lade seg ut for ved eventuelle ripples i signalet og fungere som en bypass.
+-  $L$ er induktansen til spolen $L1$ i kretsen ($L = L1 = 100 \text{ mH}$), og $C$ er total kapasitans fra kondensatorene $C2$ og $C3$ gitt av formelen $C = C2 + C3 = 470,1 \text{ }\mu\text{F}$. Kondensator C4 vil på grunn av sin relativt lave verdi kunne lade seg ut for ved eventuelle ripples i signalet og fungere som en bypass.
 
 ![frekvensrespons](./img/filter.png)
 
--
+![all-channels](./img/channels.png)
+![all-channels](./img/channels-compared.png)
