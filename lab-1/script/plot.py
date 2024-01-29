@@ -39,11 +39,14 @@ def spectrum_plot(data, sample_period, title="", show_plot=True):
 
     f = np.arange(-Fs / 2, Fs / 2, df)
 
-    plt.plot(f, data)
+    plt.figure().set_figwidth(12)
+    plt.plot(f, data, linewidth=0.6)
 
     plt.xlabel("Frequency [Hz]")
     plt.ylabel("Relative effect [dB]")
     plt.title(title)
+
+    plt.ylim([-80, 10])
 
     plt.tight_layout()
     plt.grid()

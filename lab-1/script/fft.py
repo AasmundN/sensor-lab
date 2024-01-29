@@ -12,22 +12,20 @@ def calc_spectrum(data, NFFT):
     if NFFT < len(data):
         print(NFFT_choosen_too_low_error)
         print(
-            f"The lenght of your signal was: {len(data)}. The closest power of two to your data lenght is: {2**(np.ceil(np.log2(len(data))))}.\n"
+            f"The lenght of your signal was: {len(data)}. The closest power of two to your data lenght is: {round(2**(np.ceil(np.log2(len(data)))))}.\n"
         )
         exit(-1)
 
     if not np.log2(NFFT).is_integer():
         print(NFFT_not_optimal_error)
         print(
-            f"The lenght of your signal was: {len(data)}. The closest power of two to your data lenght is: {2**(np.ceil(np.log2(len(data))))}.\n"
+            f"The lenght of your signal was: {len(data)}. The closest power of two to your data lenght is: {round(2**(np.ceil(np.log2(len(data)))))}.\n"
         )
         exit(-1)
 
     X = fft(data, NFFT)
 
-    Sx_dB = 20 * np.log10(np.abs(X) / np.max(X))
-
-    # Sx_dB_norm = Sx_dB - np.max(Sx_dB)
+    Sx_dB = 20 * np.log10(abs(X) / max(X))
 
     Sx_dB_shifted = fftshift(Sx_dB)
 
