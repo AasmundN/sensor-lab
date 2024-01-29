@@ -8,6 +8,10 @@ missing_file_path_error = (
     "\nMissing file path\n\nUsage example: python main.py foo.bin\n"
 )
 
+BIT_RESOLUTION = 4096
+V_REF = 3.3
+DC_VALUE = 1
+
 
 def main():
     # file path must be provided as argument
@@ -22,7 +26,13 @@ def main():
     #
     # example: plot slice of first data column
     #
-    time_plot(data[2000:3000, 0], sample_period, show_plot=True)
+    time_plot(data[2000:2100, 0], sample_period, show_plot=True)
+
+    dc_component = DC_VALUE / V_REF * BIT_RESOLUTION
+    NFFT = 8192
+
+    data_spec = calc_spectrum(data[2000:8000, 0] - dc_component, NFFT)
+    spectrum_plot(data_spec, sample_period, show_plot=True)
 
 
 if __name__ == "__main__":

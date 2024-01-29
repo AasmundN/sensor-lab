@@ -20,3 +20,5 @@ $$\frac{1}{2\pi\sqrt{LC}} = 23 \text{ Hz.}$$
 
 ![all-channels](./img/channels.png)
 ![all-channels](./img/channels-compared.png)
+
+![spectrum](./img/spectrum-test.png)
