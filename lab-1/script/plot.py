@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from scipy.fft import fftfreq, fftshift
 
 # adc resolution
 resolution = 0.8e-3
@@ -31,18 +32,24 @@ def time_plot(data, sample_period, title="", show_plot=True):
     plt.show()
 
 
-def spectrum_plot(data, sample_period=3.2e-5, label=""):
-    print("spectrum_plot is running")
+def spectrum_plot(data, sample_period, title="", show_plot=True):
     NFFT = len(data)
-    Fs = 1/sample_period
-    df = Fs/NFFT
-    f = fftfreq(NFFT, df)
-    f_shifted = fftshift(f)
+    Fs = 1 / sample_period
+    df = Fs / NFFT
 
-    print("spectrum_plot is done running")
+    f = np.arange(-Fs / 2, Fs / 2, df)
 
-    plt.plot(f_shifted, data)
+    plt.plot(f, data)
+
+    plt.xlabel("Frequency [Hz]")
+    plt.ylabel("Relative effect [dB]")
+    plt.title(title)
+
+    plt.tight_layout()
     plt.grid()
+
+    # allows modification of the plot outside of the function
+    if not show_plot:
+        return
+
     plt.show()
-
-
