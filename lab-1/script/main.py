@@ -1,7 +1,9 @@
 import sys
+from scipy.signal.windows import hann
+import numpy as np
 
 from raspi_import import raspi_import
-from plot import time_plot, spectrum_plot
+from plot import time_plot, spectrum_plot, bode_plot
 from fft import calc_spectrum
 
 missing_file_path_error = (
@@ -10,7 +12,7 @@ missing_file_path_error = (
 
 BIT_RESOLUTION = 4096
 V_REF = 3.3
-DC_VALUE = 1
+DC_OFFSET = 1
 
 
 def main():
@@ -21,17 +23,40 @@ def main():
 
     file_path = sys.argv[1]
 
+    #
+    # import adc data and remove dc component
+    #
     sample_period, data = raspi_import(file_path)
+    dc_component = DC_OFFSET / V_REF * BIT_RESOLUTION
+    data = data - dc_component
+
+    #
+    # import filter data
+    #
+    filter_data = np.genfromtxt(
+        "/Users/aasmundnorsett/Documents/NTNU/Semester6/Sensor/sensor-lab/lab-1/data/filter.csv",
+        delimiter=",",
+    )
+
+    bode_plot(filter_data[:, 0], filter_data[:, 1])
 
     #
     # example: plot slice of first data column
     #
     time_plot(data[2000:2100, 0], sample_period, show_plot=True)
 
-    dc_component = DC_VALUE / V_REF * BIT_RESOLUTION
+    #
+    # example: caluculate and plot power spectrum with and wihtout hann window
+    #
     NFFT = 8192
+    data_slice = data[2000:8000, 0]
 
-    data_spec = calc_spectrum(data[2000:8000, 0] - dc_component, NFFT)
+    data_spec = calc_spectrum(data_slice, NFFT)
+    spectrum_plot(data_spec, sample_period, show_plot=True)
+
+    data_windowed = data_slice * hann(len(data_slice))
+
+    data_spec = calc_spectrum(data_windowed, NFFT)
     spectrum_plot(data_spec, sample_period, show_plot=True)
 
 
