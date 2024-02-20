@@ -1,6 +1,8 @@
 import sys
 from scipy.signal.windows import hann
+from scipy.signal import detrend
 import numpy as np
+import matplotlib.pyplot as plt
 
 from raspi_import import raspi_import
 from plot import time_plot, spectrum_plot, bode_plot
@@ -28,7 +30,10 @@ def main():
     #
     sample_period, data = raspi_import(file_path)
     dc_component = DC_OFFSET / V_REF * BIT_RESOLUTION
+
     data = data - dc_component
+
+    plt.rcParams["font.size"] = 16
 
     #
     # import filter data
@@ -43,21 +48,24 @@ def main():
     #
     # example: plot slice of first data column
     #
-    time_plot(data[2000:2100, 0], sample_period, show_plot=True)
+    # for i in range(5):
+    #     time_plot(
+    #         data[2000:2071, i], sample_period, title=f"ADC {i + 1}", show_plot=True
+    #     )
 
     #
     # example: caluculate and plot power spectrum with and wihtout hann window
     #
-    NFFT = 8192
-    data_slice = data[2000:8000, 0]
+    NFFT = 524288
+    data_slice = data[10000:, 0]
 
     data_spec = calc_spectrum(data_slice, NFFT)
-    spectrum_plot(data_spec, sample_period, show_plot=True)
+    # spectrum_plot(data_spec, sample_period, show_plot=True)
 
     data_windowed = data_slice * hann(len(data_slice))
 
     data_spec = calc_spectrum(data_windowed, NFFT)
-    spectrum_plot(data_spec, sample_period, show_plot=True)
+    # spectrum_plot(data_spec, sample_period, show_plot=True)
 
 
 if __name__ == "__main__":

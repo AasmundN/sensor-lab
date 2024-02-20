@@ -25,7 +25,7 @@ def calc_spectrum(data, NFFT):
 
     X = fft(data, NFFT)
 
-    Sx_dB = 20 * np.log10(abs(X) / max(X))
+    Sx_dB = 20 * np.log10(abs(X) / max(abs(X)))
 
     Sx_dB_shifted = fftshift(Sx_dB)
 

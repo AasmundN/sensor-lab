@@ -16,13 +16,14 @@ $$\frac{1}{2\pi\sqrt{LC}} = 23 \text{ Hz.}$$
 
 -  $L$ er induktansen til spolen $L1$ i kretsen ($L = L1 = 100 \text{ mH}$), og $C$ er total kapasitans fra kondensatorene $C2$ og $C3$ gitt av formelen $C = C2 + C3 = 470,1 \text{ }\mu\text{F}$. Kondensator C4 vil på grunn av sin relativt lave verdi kunne lade seg ut for ved eventuelle ripples i signalet og fungere som en bypass.
 
-![frekvensrespons](./img/filter.png)
+- Noise reduction frequenxy respons
+   ![frekvensrespons](./img/filter.png)
 
-![all-channels](./img/channels.png)
-![all-channels](./img/channels-compared.png)
+- Time series of signals sampled by ADCs without, and with off-set
+   ![all-channels](./img/channels.png)
 
 -  Spectrum with and without hannings window.
    ![spectrum](./img/spectrum-test.png)
    ![spectrum](./img/spectrum-test-hann.png)
 
-- 
+- Ignoring all analog system errors and all nonidealities in the converter, the signal-to-noise ratio (SNR) for a single reading of an $N$-bit ADC is 6.02 $N$ + 1.76 dB. In our case we have 12-bits ADCs, witch gives an ideal SNR of 74 dB. From our plot of the sampled signal's frequency spectrum, we can estimate the SNR to around 60 dB
