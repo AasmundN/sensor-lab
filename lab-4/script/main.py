@@ -64,8 +64,10 @@ def find_radial_speed(file_path):
 if __name__ == "__main__":
     files = ["1.bin", "2.bin", "3.bin", "4.bin", "5.bin"]
     radial_speeds = []
+
     for file in files:
         radial_speed = find_radial_speed(file)
         radial_speeds.append(radial_speed)
+
     my = np.mean(radial_speeds)
     std = np.std(radial_speeds)
